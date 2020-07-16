@@ -1,0 +1,55 @@
+
+
+    // .card-background-page{
+    //   position: relative;
+    //   text-align: left;
+    //   height: 38vh;
+      
+    // }
+    .card-background-page {
+
+        ion-card {
+          position: relative;
+          text-align: left;
+          background-image:url(../../../assets/amk.jpg);
+          background-size: 100%;
+          background-repeat: no-repeat!important;
+          height: 32vh!important;
+        }
+    .card-rate{
+        position: absolute;
+      padding-left: 5px;
+      bottom: 31%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+    .card-title {
+      position: absolute;
+      padding-left: 5px;
+      bottom: 47%;
+      font-size: 2.0em;
+      width: 100%;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .card-place {
+      font-size: 1.3em;
+      padding-left: 5px;
+      position: absolute;
+      bottom: 21%;
+      width: 100%;
+      color: #fff;
+    }
+    .card-organizer{
+      font-size: 1.0em;
+      padding-left: 5px;
+      position: absolute;
+      bottom: 12%;
+      width: 100%;
+      color: #fff;
+    }
+    }
+  
