@@ -1,12 +1,81 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Home</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-<h1 style="margin: 10 auto;text-align: center;">home tab 1</h1>
+<ion-content fullscreen="true">
+  <div style=" text-align: center;">
+    <ion-slides #slides [options]="sliderOptions" pager="false">
+      <ion-slide>
+        <h1>Travel </h1>
+        <ion-slides #slides pager="false">
+          <ion-slide>
+            <img
+              src="https://www.nomadlord.com/Files/PackageImages/Pkg_637012212923715311.jpg"
+              height="50px"
+              width="50px"
+            />
+          </ion-slide>
+          <ion-slide>
+            <img
+              src="https://www.nomadlord.com/Files/PackageImages/Pkg_637012746105704108.jpg"
+              height="50px"
+              width="50px"
+            />
+          </ion-slide>
+          <ion-slide>
+            <img
+              src="https://www.nomadlord.com/Files/PackageImages/Pkg_637023355065902816.png"
+              height="50px"
+              width="50px"
+            />
+          </ion-slide>
+          <ion-slide>
+            <img
+              src="https://www.nomadlord.com/Files/PackageImages/Pkg_637047524598214885.jpg"
+              height="50px"
+              width="50px"
+            />
+          </ion-slide>
+        </ion-slides>
+      </ion-slide>
+      <ion-slide>
+        <h1> Group </h1>
+        <ion-slides #slides pager="false">
+          <ion-slide>
+            <img
+              src="https://www.nomadlord.com/Files/ProfileImg/Profile_637056851162663022.png"
+              height="50px"
+              width="50px"
+            />
+          </ion-slide>
+          <ion-slide>
+            <img
+              src="https://www.nomadlord.com/Files/ProfileImg/Profile_637058573956979710.jpg"
+              height="50px"
+              width="50px"
+            />
+          </ion-slide>
+          <ion-slide>
+            <img
+              src="https://www.nomadlord.com/Files/ProfileImg/Profile_637058999232629300.jpg"
+              height="50px"
+              width="50px"
+            />
+          </ion-slide>
+          <ion-slide>
+            <img
+              src="https://www.nomadlord.com/Files/ProfileImg/Profile_637071480105613707.jpg"
+              height="50px"
+              width="50px"
+            />
+          </ion-slide>
+        </ion-slides>
+      </ion-slide>
+      
+    </ion-slides>
+  </div>
 </ion-content>
