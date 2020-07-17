@@ -13,42 +13,42 @@ export class AppComponent {
   pages = [
     {
       title:'Home',
-      url:'/tabs/home',
+      url:'/app/home',
       icon: 'home'
     },
     {
       title:'Travel',
-      url:'/tabs/travel',
+      url:'/app/travel',
       icon: 'airplane'
     },
     {
       title:'Groups',
-      url:'/tabs/group',
+      url:'/app/group',
       icon: 'people'
     },
     {
       title:'Gallery',
-      url:'/tabs/gallary',
+      url:'/app/gallary',
       icon: 'images'
     },
     {
       title:'My Activity',
-      url:'/tabs/my-activity',
+      url:'/app/my-activity',
       icon: 'body'
     },
     {
       title:'Cart',
-      url:'/tabs/cart',
+      url:'/app/cart',
       icon: 'cart'
     },
     {
       title:'About',
-      url:'/tabs/about',
+      url:'/app/about',
       icon: 'information'
     },
     {
       title:'Login/Register',
-      url:'/tabs/login-regiter',
+      url:'/app/login-regiter',
       icon: 'log-in'
     },
   
