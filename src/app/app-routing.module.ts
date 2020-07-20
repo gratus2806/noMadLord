@@ -15,7 +15,15 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
+  },
+  {
+    path: 'tabs/login-regiter',
+    loadChildren: () => import('./pages/login-regiter/login-regiter.module').then( m => m.LoginRegiterPageModule)
   }
+  // {
+  //   path: 'login-regiter',
+  //   loadChildren: () => import('../login-regiter/login-regiter.module').then( m => m.LoginRegiterPageModule)
+  // }
   // {
   //   path: '',
   //   redirectTo: 'menu',
@@ -49,10 +57,7 @@ const routes: Routes = [
   //   path: 'about',
   //   loadChildren: () => import('./pages/about/about.module').then( m => m.AboutPageModule)
   // },
-  // {
-  //   path: 'login-regiter',
-  //   loadChildren: () => import('./pages/login-regiter/login-regiter.module').then( m => m.LoginRegiterPageModule)
-  // },
+  
 ];
 
 @NgModule({

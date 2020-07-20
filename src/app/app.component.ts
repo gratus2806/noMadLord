@@ -62,7 +62,7 @@ export class AppComponent {
     router.events.subscribe((event: RouterEvent) => {
      
         this.selectedPath = event.url;
-        console.log(">>>>",this.selectedPath);
+        // console.log(">>>>",this.selectedPath);
     });
     this.initializeApp();
   }

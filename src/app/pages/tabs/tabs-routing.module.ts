@@ -49,10 +49,6 @@ const routes: Routes = [
       {
         path: 'about',
         loadChildren: () => import('../about/about.module').then( m => m.AboutPageModule)
-      },
-      {
-        path: 'login-regiter',
-        loadChildren: () => import('../login-regiter/login-regiter.module').then( m => m.LoginRegiterPageModule)
       }
     ]
   },
@@ -61,6 +57,7 @@ const routes: Routes = [
     redirectTo:'/tabs/tab1',
     pathMatch:'full'
   }
+  
 ];
 
 @NgModule({
