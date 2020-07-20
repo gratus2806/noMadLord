@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
   {
-    path: 'tabs/login-regiter',
+    path: 'app/login-regiter',
     loadChildren: () => import('./pages/login-regiter/login-regiter.module').then( m => m.LoginRegiterPageModule)
   }
   // {
