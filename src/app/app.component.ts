@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import{Router, RouterEvent} from '@angular/router'
 import { Platform } from '@ionic/angular';
+
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -13,56 +14,52 @@ export class AppComponent {
   pages = [
     {
       title:'Home',
-      url:'/app/home',
+      url:'/app/tab/home',
       icon: 'home'
     },
     {
       title:'Travel',
-      url:'/app/travel',
+      url:'/app/tab/travel',
       icon: 'airplane'
     },
     {
       title:'Groups',
-      url:'/app/group',
+      url:'/app/tab/group',
       icon: 'people'
     },
     {
       title:'Gallery',
-      url:'/app/gallary',
+      url:'/app/tab/gallary',
       icon: 'images'
     },
     {
       title:'My Activity',
-      url:'/app/my-activity',
+      url:'/app/tab/my-activity',
       icon: 'body'
     },
     {
       title:'Cart',
-      url:'/app/cart',
+      url:'/app/tab/cart',
       icon: 'cart'
     },
     {
       title:'About',
-      url:'/app/about',
+      url:'/app/tab/about',
       icon: 'information'
     },
     {
       title:'Login/Register',
-      url:'/app/login-regiter',
+      url:'login-regiter',
       icon: 'log-in'
     },
   
   ];
   selectedPath='';
   constructor(private router:Router,private platform: Platform,private splashScreen: SplashScreen,private statusBar: StatusBar) {
-    // this.router.events.subscribe((event:RouterEvent)=>{
-    //   this.selectedPath=event.url;
-    // })
-    // console.log("selected path>>>",this.router.url)
+
     router.events.subscribe((event: RouterEvent) => {
      
         this.selectedPath = event.url;
-        // console.log(">>>>",this.selectedPath);
     });
     this.initializeApp();
   }

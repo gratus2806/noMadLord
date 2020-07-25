@@ -14,12 +14,21 @@ const routes: Routes = [
   // },
   {
     path: '',
+    redirectTo: '/welcome',
+    pathMatch: 'full'
+  },
+  {
+    path: 'app',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
   },
   {
-    path: 'app/login-regiter',
+    path: 'login-regiter',
     loadChildren: () => import('./pages/login-regiter/login-regiter.module').then( m => m.LoginRegiterPageModule)
-  }
+  },
+  {
+    path: 'welcome',
+    loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule)
+  },
   // {
   //   path: 'login-regiter',
   //   loadChildren: () => import('../login-regiter/login-regiter.module').then( m => m.LoginRegiterPageModule)
