@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {first} from "rxjs/operators";
 import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
+import { UserService } from '../../service/user.service';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class LoginRegiterPage implements OnInit {
   failureMessage = '';
   warningMessage = '';
   local;
-  constructor(private formBuilder: FormBuilder, private router: Router) { 
+  constructor(private formBuilder: FormBuilder, private router: Router,public userService: UserService) { 
     // console.log("userdata_local>>>>>>>>",localStorage.getItem('userData'));
   }
 
@@ -52,21 +53,41 @@ export class LoginRegiterPage implements OnInit {
   onSubmitLoginForm(){
     // this.submitted = true;
     this.userData = {
-      email: this.loginForm.controls.email.value,
-      password: this.loginForm.controls.password.value,
+      UserName: this.loginForm.controls.email.value,
+      Password: this.loginForm.controls.password.value,
       rememberMe:this.loginForm.controls.rememberMe.value,
     }
-    if(this.userData.email=='' || this.userData.password==''){
-      this._warning.next(` Something went wrong..!!!`);
-    }
-    else if(this.userData.email=='admin' && this.userData.password=='123'){
-      localStorage.setItem('userData', JSON.stringify(this.userData));
-      this._success.next(` Logged in Successfully`);
-    } else{
-      this._failure.next(` Login Failed try again.!!!`);
+    if(this.userData.UserName=='' || this.userData.Password==''){
+      this._warning.next( 'Something went wrong..!!!');
+      console.log("in main if")
+      alert("in main if");
+    }else {
+      alert("in main else"); 
+      console.log("in main else")
+      this.userService.loginDetails(this.userData).subscribe(data => {
+        // console.log("userDetails>>",data['Data'].User)
+        // console.log("Status>>",data['Status'])
+        if(this.userData.email!='' || this.userData.password!=''){
+          // this._warning.next(` Something went wrong..!!!`);
+          if(data['Status']==1){
+            alert("in 2main if");
+            console.log("in 2main if")
+            this._success.next('Logged in Successfully');
+            localStorage.setItem('userData', JSON.stringify(data['Data'].User));
+            localStorage.setItem('loginStatus', data['Status']);
+            localStorage.setItem('rememberMe', this.userData['rememberMe']);
+            this.router.navigateByUrl('/app/tab/home');
+          }else{
+            alert("in main 2main else");
+            console.log("in 2main else")
+            this._failure.next('Login Failed try again.!!!');
+          }
+        }
+      })
     }
     
-    console.log("userdata>>>>",this.userData)
+    this.loginForm.reset();
+    // console.log("userdata>>>>",this.userData)
   }
   
 

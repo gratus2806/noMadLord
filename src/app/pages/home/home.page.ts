@@ -10,10 +10,12 @@ export class HomePage implements OnInit {
 sliderOptions = {
     direction: 'vertical'
   }
-
+  loginStatus;
   @ViewChild('slides', { static: true }) slides: IonSlides;
 
-  constructor() { }
+  constructor() { 
+    this.loginStatus=localStorage.getItem('loginStatus');
+  }
 
   ngOnInit() {
   }

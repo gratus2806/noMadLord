@@ -11,17 +11,22 @@ import { AppRoutingModule } from './app-routing.module';
 
 import {ReactiveFormsModule} from "@angular/forms";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import {UserService} from "./service/user.service";
+import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
+    HttpClientModule,
     ReactiveFormsModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, NgbModule
     
   ],
   providers: [
+    UserService,
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

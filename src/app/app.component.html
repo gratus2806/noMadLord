@@ -7,14 +7,27 @@
            <ion-list-header>
             Conference
           </ion-list-header>
-        <ion-menu-toggle autoHide="false" *ngFor="let p of pages">
-          <ion-item [routerLink]="p.url" routerLinkActive="selected" detail="false" routerDirection="root" [class.active-item]="selectedPath===p.url">
-            <ion-icon slot="start" [name]="p.icon + '-outline'"></ion-icon>
-            <ion-label>
-              {{p.title}}
-            </ion-label>
-          </ion-item>
-        </ion-menu-toggle>
+          <span *ngIf="loginStatus!='1'">
+            <ion-menu-toggle autoHide="false" *ngFor="let p of pagesBeforeLogin">
+              <ion-item  [routerLink]="p.url" routerLinkActive="selected" detail="false" routerDirection="root" [class.active-item]="selectedPath===p.url">
+                <ion-icon slot="start" [name]="p.icon + '-outline'"></ion-icon>
+                <ion-label>
+                  {{p.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </span>
+          <span *ngIf="loginStatus=='1'">
+            <ion-menu-toggle autoHide="false" *ngFor="let p of pagesAfterLogin">
+              <ion-item  [routerLink]="p.url" routerLinkActive="selected" detail="false" routerDirection="root" [class.active-item]="selectedPath===p.url">
+                <ion-icon slot="start" [name]="p.icon + '-outline'"></ion-icon>
+                <ion-label>
+                  {{p.title}}
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </span>
+        
       </ion-list>
     </ion-content>
   </ion-menu>

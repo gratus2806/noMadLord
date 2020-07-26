@@ -28,7 +28,11 @@ const routes: Routes = [
   {
     path: 'welcome',
     loadChildren: () => import('./pages/welcome/welcome.module').then( m => m.WelcomePageModule)
+  },  {
+    path: 'logout',
+    loadChildren: () => import('./pages/logout/logout.module').then( m => m.LogoutPageModule)
   },
+
   // {
   //   path: 'login-regiter',
   //   loadChildren: () => import('../login-regiter/login-regiter.module').then( m => m.LoginRegiterPageModule)
