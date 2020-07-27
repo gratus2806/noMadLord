@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
+import { UserService } from '../../service/user.service';
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.page.html',
@@ -7,14 +8,24 @@ import {Router} from "@angular/router";
 })
 export class LogoutPage implements OnInit {
 
-  constructor(private router: Router) { 
-    localStorage.removeItem("loginStatus");
-    localStorage.removeItem("userData");
-    localStorage.removeItem("rememberMe");
-    this.router.navigateByUrl('/welcome');
-  }
+  constructor(private router: Router,public userService: UserService,private route: ActivatedRoute) { 
+   
+    route.params.subscribe(val => {
+      this.userService.logout();
+    });
+  
+  
+}
 
-  ngOnInit() {
-  }
+ngOnInit() {
+  
+}
+ionViewDidLoad() {
+  console.log("I'm alive!");
+}
+ionViewWillLeave() {
+  console.log("Looks like I'm about to leave :(");
+}
+
 
 }

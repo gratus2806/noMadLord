@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons >
-    <ion-title>Login</ion-title>
+    <ion-title>NomadLord </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,10 +18,14 @@
   <span>
     <ngb-alert style="position: fixed;overflow: scroll;width: 100%;" *ngIf="warningMessage" type="warning" (close)="warningMessage = ''">{{ warningMessage }}</ngb-alert>
   </span>
+
+  <div style="position: absolute;top: 35%;left: 38%;z-index: 1;" *ngIf="loadingForm" >
+    <img style="margin: 30px auto;height: 84px;" src="../../../assets/loading.gif" />
+  </div>
   <!-- *****************Main Login Form *******************  -->
-  <div class="login-form">
+  <div class="login-form" *ngIf="loginFormDiv" [class.blur]="loadingForm">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
-      <h2 class="text-center">Log in</h2>   
+      <h2 class="text-center">Sign in</h2>   
       <div class="form-group">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -29,7 +33,7 @@
               <span class="fa fa-user"></span>
             </span>                    
           </div>
-          <input type="email" class="form-control" formControlName="email"  placeholder="username" required>				
+          <input type="email" class="form-control" formControlName="username"  placeholder="username" required>				
         </div>
       </div>
       <div class="form-group">
@@ -56,7 +60,29 @@
       </div>
       <div class="clearfix">
         <!-- <label class="float-left form-check-label"><input type="checkbox"> Remember me</label> -->
-        <a href="#" class="float-right">Forgot Password?</a>
+        <a   (click)="showForgotPasswordDiv()" class="float-right" style="color:#007bff;">Forgot Password?</a>
+      </div>
+    </form>
+  </div>
+  <div class="login-form" *ngIf="forgotFormDiv">
+    <form [formGroup]="forgotPasswordForm" (ngSubmit)="onSubmitForgotPasswordForm()">
+      <h2 class="text-center" style="margin: 0 0 33px;">Reset Password</h2>   
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">
+              <span class="fa fa-user"></span>
+            </span>                    
+          </div>
+          <input type="email" class="form-control" formControlName="email"  placeholder="Enter Registerd Email..." required>				
+        </div>
+      </div>
+      <div class="form-group ">
+        <button type="submit" class="btn  btn-primary login-btn btn-block">Submit</button>
+      </div>
+      <div class="clearfix">
+        <!-- <label class="float-left form-check-label"><input type="checkbox"> Remember me</label> -->
+        <a (click)="backToLogin()" class="float-left" style="color:#007bff;">Back to Login</a>
       </div>
     </form>
   </div>
