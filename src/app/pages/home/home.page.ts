@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {  IonSlides } from '@ionic/angular';
+import {  IonSlides, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -13,11 +13,12 @@ sliderOptions = {
   loginStatus;
   @ViewChild('slides', { static: true }) slides: IonSlides;
 
-  constructor() { 
+  constructor(public menu: MenuController,) { 
     this.loginStatus=localStorage.getItem('loginStatus');
   }
-
+ 
   ngOnInit() {
+    this.menu.enable(true);
   }
 
 }

@@ -13,7 +13,7 @@ export class WelcomeComponent implements OnInit {
   ngOnInit() {}
 
     login(){
-        this.router.navigate(['login-regiter']);
+        this.router.navigate(['login']);
     }
   
     dashboard(){

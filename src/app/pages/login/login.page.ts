@@ -9,10 +9,10 @@ import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-login-regiter',
-  templateUrl: './login-regiter.page.html',
-  styleUrls: ['./login-regiter.page.scss'],
+  templateUrl: './login.page.html',
+  styleUrls: ['./login.page.scss'],
 })
-export class LoginRegiterPage implements OnInit {
+export class LoginPage implements OnInit {
   loginForm: FormGroup;
   userData;
   private _success = new Subject<string>();

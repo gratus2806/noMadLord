@@ -90,8 +90,8 @@ export class AppComponent {
       icon: 'information'
     },
     {
-      title:'Login/Register',
-      url:'login-regiter',
+      title:'Login',
+      url:'login',
       icon: 'log-in'
     }
   ];

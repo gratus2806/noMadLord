@@ -17,11 +17,4 @@ import { TabsPage } from './tabs.page';
   ],
   declarations: [TabsPage]
 })
-export class TabsPageModule {
-  constructor(
-    public menu: MenuController,
-  ) {
-    this.menu.enable(true);
-  }
-
-}
+export class TabsPageModule {}

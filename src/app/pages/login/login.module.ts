@@ -4,9 +4,9 @@ import { FormsModule ,ReactiveFormsModule} from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginRegiterPageRoutingModule } from './login-regiter-routing.module';
+import { LoginPageRoutingModule } from './login.routing.module';
 
-import { LoginRegiterPage } from './login-regiter.page';
+import { LoginPage } from './login.page';
 import {HttpClientModule} from "@angular/common/http";
 @NgModule({ 
   imports: [
@@ -16,8 +16,8 @@ import {HttpClientModule} from "@angular/common/http";
     NgbModule,
     ReactiveFormsModule,
     IonicModule,
-    LoginRegiterPageRoutingModule
+    LoginPageRoutingModule
   ],
-  declarations: [LoginRegiterPage]
+  declarations: [LoginPage]
 })
 export class LoginRegiterPageModule {}
