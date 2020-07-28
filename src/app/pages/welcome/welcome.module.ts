@@ -23,8 +23,7 @@ export class WelcomePageModule {
   constructor(
     public menu: MenuController,
   ) {
-    // console.log(" run this")
-    this.menu.enable(false);
+
   }
 
   ionViewWillEnter() {

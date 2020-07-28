@@ -18,7 +18,7 @@ sliderOptions = {
   }
  
   ngOnInit() {
-    this.menu.enable(true);
   }
+ 
 
 }

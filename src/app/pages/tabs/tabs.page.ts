@@ -13,6 +13,9 @@ export class TabsPage implements OnInit {
     public menu: MenuController,
   ) {}
   ngOnInit() {
+  }
+  ionViewWillEnter() {
+    console.log(" run this")
     this.menu.enable(true);
   }
 }
