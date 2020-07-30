@@ -17,62 +17,38 @@
       <ion-slide>
         <h1>Travel</h1>
         <ion-slides #slides pager="false">
-          <ion-slide>
-            <ion-grid> 
-              <ion-row>
-                <ion-col  class="card-background-page">
-                  
-                  <ion-card   >
-                    <div class="card-rate">INR 2500</div>
-                     <div class="card-title">AMK-Alang Madan Kulang Trek</div>
-                     <div class="card-place">Maharashtra</div>
-                     <div class="card-organizer">Organized by Alpin climbers</div>
-                   </ion-card>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col class="card-background-page">
-                  <ion-card style="background-image:url(https://www.nomadlord.com/Files/PackageImages/Pkg_637047524598214885.jpg); background-size: cover; "  >
-                    <div class="card-rate">INR 1850</div>
-                     <div class="card-title">Sandhan Valley Trek and Camping</div>
-                     <div class="card-place">Maharashtra</div>
-                     <div class="card-organizer">Organized by Alpin climbers</div>
-                   </ion-card>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-slide>
-          <ion-slide>
-            <ion-grid>
-              <ion-row>
-                <ion-col  class="card-background-page">
-                  
-                  <ion-card   >
-                    <div class="card-rate">INR 2500</div>
-                     <div class="card-title">AMK-Alang Madan Kulang Trek</div>
-                     <div class="card-place">Maharashtra</div>
-                     <div class="card-organizer">Organized by Alpin climbers</div>
-                   </ion-card>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col  class="card-background-page">
-                  <ion-card   >
-                    <div class="card-rate">INR 2500</div>
-                     <div class="card-title">AMK-Alang Madan Kulang Trek</div>
-                     <div class="card-place">Maharashtra</div>
-                     <div class="card-organizer">Organized by Alpin climbers</div>
-                   </ion-card>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-          </ion-slide>
-          <ion-slide>
-            <img
-              src="https://www.nomadlord.com/Files/PackageImages/Pkg_637047524598214885.jpg"
-              height="50px"
-              width="50px"
-            />
+          <ion-slide *ngFor="let PublicPkgViewModels of PublicPkgViewModel">
+            <ion-card style="height: 449px !important;">
+              <ion-card-header>
+                <ion-card-title style="height: 48px !important;">{{PublicPkgViewModels.PkgTitle}}</ion-card-title>
+                <ion-card-subtitle >{{PublicPkgViewModels.PkgCurrencySymbol}} {{PublicPkgViewModels.PricePerPerson}}</ion-card-subtitle>
+              </ion-card-header>
+              <img class="pkgImage" [src]="'https://www.nomadlord.com/'+ PublicPkgViewModels.PkgImage" />
+              <ion-card-content style="height: 75px !important;">
+                <div class="card-place">{{PublicPkgViewModels.Countries}}</div>
+                <div class="card-place">{{PublicPkgViewModels.States}}</div>
+                <div class="card-organizer">Organised By {{PublicPkgViewModels.GroupName}}</div>
+              </ion-card-content>
+            </ion-card>
+              
+                
+                  <!-- <ion-card>
+                    <ion-card-header>
+                      <ion-card-title>
+                        <div class="card-title"></div>
+                      </ion-card-title>
+                    </ion-card-header>
+                    <img [src]="'https://www.nomadlord.com/'+ PublicPkgViewModels.PkgImage"/>
+                    <ion-card-content>
+                      <div class="card-rate">{{PublicPkgViewModels.PkgCurrencySymbol}} {{PublicPkgViewModels.PricePerPerson}}</div>
+                      <div class="card-place">{{PublicPkgViewModels.Countries}}</div>
+                      <div class="card-place">{{PublicPkgViewModels.States}}</div>
+                      <div class="card-organizer">Organised By {{PublicPkgViewModels.GroupName}}</div>
+                    </ion-card-content>
+                  </ion-card> -->
+                
+              
+           
           </ion-slide>
         </ion-slides>
       </ion-slide>
@@ -81,7 +57,7 @@
         <ion-slides #slides pager="false">
           <ion-slide>
             <img
-              src="https://www.nomadlord.com/Files/ProfileImg/Profile_637056851162663022.png"
+              src="https://www.nomadlord.com/Files/ProfileImg/Profile_637058573956979710.jpg"
               height="50px"
               width="50px"
             />

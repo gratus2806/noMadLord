@@ -20,5 +20,8 @@ export class UserService {
   forgotPassword(forgotPasswordData){
     return this.http.post(environment.apiBaseUrl+'Account/ForgetPassword',forgotPasswordData);
   }
+  loadDashboardItems(){
+    return this.http.get(environment.apiBaseUrl+'/Dashboard/GetAllDetails');
+  }
 
 }
