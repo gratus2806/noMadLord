@@ -39,11 +39,14 @@
     font-size: 15px;
     font-weight: bold;
       min-height: 40px;
-      color: #ffffff;
-    background-color: #d9534f;
-    border-color: #d43f3a;
+      color: #495057;
+    background-color: #e9ecef;
+    border-color: #e9ecef;
 }
 .blur{
     filter: blur(8px);
   -webkit-filter: blur(8px);
+}
+input[type=radio] {
+    margin-right: 5px;
 }

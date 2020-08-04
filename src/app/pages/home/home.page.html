@@ -12,15 +12,21 @@
 
 
 <ion-content fullscreen="true">
-  <div style="text-align: center;">
+  <span>
+    <ngb-alert style="position: fixed;overflow: scroll;width: 100%;" *ngIf="failureMessage" type="danger" (close)="failureMessage = ''">{{ failureMessage }}</ngb-alert>
+  </span>
+  <div style="position: absolute;top: 35%;left: 38%;z-index: 1;" *ngIf="loadingForm" >
+    <img style="margin: 30px auto;height: 84px;" src="../../../assets/loading.gif" />
+  </div>
+  <div style="text-align: center;" [class.blur]="loadingForm">
     <ion-slides #slides [options]="sliderOptions" pager="false">
-      <ion-slide>
-        <h1>Travel</h1>
+      <ion-slide  >
+        <h1 class="slide_header">Travel</h1>
         <ion-slides #slides pager="false">
           <ion-slide *ngFor="let PublicPkgViewModels of PublicPkgViewModel">
-            <ion-card style="height: 449px !important;">
+            <ion-card class="ion_card">
               <ion-card-header>
-                <ion-card-title style="height: 48px !important;">{{PublicPkgViewModels.PkgTitle}}</ion-card-title>
+                <ion-card-title class="ion_card_title" >{{PublicPkgViewModels.PkgTitle}}</ion-card-title>
                 <ion-card-subtitle >{{PublicPkgViewModels.PkgCurrencySymbol}} {{PublicPkgViewModels.PricePerPerson}}</ion-card-subtitle>
               </ion-card-header>
               <img class="pkgImage" [src]="'https://www.nomadlord.com/'+ PublicPkgViewModels.PkgImage" />
@@ -30,62 +36,102 @@
                 <div class="card-organizer">Organised By {{PublicPkgViewModels.GroupName}}</div>
               </ion-card-content>
             </ion-card>
-              
-                
-                  <!-- <ion-card>
-                    <ion-card-header>
-                      <ion-card-title>
-                        <div class="card-title"></div>
-                      </ion-card-title>
-                    </ion-card-header>
-                    <img [src]="'https://www.nomadlord.com/'+ PublicPkgViewModels.PkgImage"/>
-                    <ion-card-content>
-                      <div class="card-rate">{{PublicPkgViewModels.PkgCurrencySymbol}} {{PublicPkgViewModels.PricePerPerson}}</div>
-                      <div class="card-place">{{PublicPkgViewModels.Countries}}</div>
-                      <div class="card-place">{{PublicPkgViewModels.States}}</div>
-                      <div class="card-organizer">Organised By {{PublicPkgViewModels.GroupName}}</div>
-                    </ion-card-content>
-                  </ion-card> -->
-                
-              
-           
           </ion-slide>
         </ion-slides>
       </ion-slide>
-      <ion-slide>
-        <h1>Group</h1>
+      <ion-slide style="margin-top: 4px;">
+        <h1 class="slide_header" >Our Group</h1>
         <ion-slides #slides pager="false">
-          <ion-slide>
-            <img
-              src="https://www.nomadlord.com/Files/ProfileImg/Profile_637058573956979710.jpg"
-              height="50px"
-              width="50px"
-            />
+          <ion-slide *ngFor="let PublicGrpModels of PublicGrpModel">
+            <ion-card class="ion_card" *ngIf="PublicGrpModels.GrpProfilePhoto" (click)=PublicGrpModelClicked() >
+              <img class="pkgImage" [src]="'https://www.nomadlord.com/'+ PublicGrpModels.GrpProfilePhoto" />
+              <ion-card-content class="ion_card_content" >
+                <ion-card-title class="ion_card_title">{{PublicGrpModels.GrpTitle}}</ion-card-title>
+                <ion-card-subtitle class="subtitle"   >{{PublicGrpModels.AboutGrp}}</ion-card-subtitle>
+              </ion-card-content>
+            </ion-card>
+            <ion-card class="ion_card" *ngIf="PublicGrpModels.GrpProfilePhoto==''">
+              <img class="pkgImage" src="https://www.nomadlord.com/Files/GrpImages/grpImg.jpg " />
+              <ion-card-content  class="ion_card_content">
+                <ion-card-title class="ion_card_title">{{PublicGrpModels.GrpTitle}}</ion-card-title>
+                <ion-card-subtitle class="subtitle"  >{{PublicGrpModels.AboutGrp}}</ion-card-subtitle>
+              </ion-card-content>
+            </ion-card>
           </ion-slide>
-          <ion-slide>
-            <img
-              src="https://www.nomadlord.com/Files/ProfileImg/Profile_637058573956979710.jpg"
-              height="50px"
-              width="50px"
-            />
+        </ion-slides>
+      </ion-slide>
+      <ion-slide style="margin-top: 4px;">
+        <h1 class="slide_header" >Our Latest Blogs</h1>
+        <ion-slides #slides pager="false">
+          <ion-slide *ngFor="let lstBlog of lstBlogs">
+            <ion-card class="ion_card"  (click)=PublicGrpModelClicked() >
+              <img class="pkgImage" [src]="'https://www.nomadlord.com/'+ lstBlog.ImagePath" />
+              <ion-card-content class="ion_card_content" >
+                <ion-row style="margin: 15px auto;">
+                  <ion-col style="width: 100%;">
+                    <ion-card-title class="ion_card_title">{{lstBlog.Title}}</ion-card-title>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <img style="height: 75px;width: 80px;" [src]="'https://www.nomadlord.com/'+ lstBlog.ProfilePic" />
+                  </ion-col>
+                </ion-row>
+                <ion-card-subtitle class="subtitle"   style="font-size: 1rem;">{{lstBlog.Author}}</ion-card-subtitle>
+              </ion-card-content>
+            </ion-card>
           </ion-slide>
-          <ion-slide>
-            <img
-              src="https://www.nomadlord.com/Files/ProfileImg/Profile_637058999232629300.jpg"
-              height="50px"
-              width="50px"
-            />
-          </ion-slide>
-          <ion-slide>
-            <img
-              src="https://www.nomadlord.com/Files/ProfileImg/Profile_637071480105613707.jpg"
-              height="50px"
-              width="50px"
-            />
+        </ion-slides>
+      </ion-slide>
+      <ion-slide style="margin-top: 4px;">
+        <h1 class="slide_header" >Our Latest Photos</h1>
+        <ion-slides #slides pager="false">
+          <ion-slide *ngFor="let lstImgBlgModels of lstImgBlgModel">
+            <ion-card class="ion_card" *ngIf="lstImgBlgModels.ProfilePic" (click)=PublicGrpModelClicked() >
+              <img class="pkgImage" [src]="'https://www.nomadlord.com/'+ lstImgBlgModels.Path" />
+              <ion-card-content class="ion_card_content" >
+                <ion-row style="margin: 2px auto;">
+                  <ion-col style="width: 100%;">
+                    <ion-card-title class="ion_card_title" style="padding-top: 10px;">{{lstImgBlgModels.Title}}</ion-card-title>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <img style="height: 75px;width: 80px;" [src]="'https://www.nomadlord.com/'+ lstImgBlgModels.ProfilePic" />
+                  </ion-col>
+                </ion-row>
+                <ion-card-subtitle class="subtitle"   style="font-size: 1rem;">{{lstImgBlgModels.Author}}</ion-card-subtitle>
+              </ion-card-content>
+            </ion-card>
+            <ion-card class="ion_card" *ngIf="lstImgBlgModels.ProfilePic==''" (click)=PublicGrpModelClicked() >
+              <img class="pkgImage" [src]="'https://www.nomadlord.com/'+ lstImgBlgModels.Path" />
+              <ion-card-content class="ion_card_content" >
+                <ion-row style="margin: 2px auto;">
+                  <ion-col style="width: 100%;">
+                    <ion-card-title class="ion_card_title" style="padding-top: 10px;">{{lstImgBlgModels.Title}}</ion-card-title>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <img style="height: 75px;width: 80px;" src="https://www.nomadlord.com/Content/Admin/img/profile/user.jpg" />
+                  </ion-col>
+                </ion-row>
+                <ion-card-subtitle class="subtitle"   style="font-size: 1rem;">{{lstImgBlgModels.Author}}</ion-card-subtitle>
+              </ion-card-content>
+            </ion-card>
           </ion-slide>
         </ion-slides>
       </ion-slide>
     </ion-slides>
   </div>
+  <!-- <div style="text-align: center;" *ngIf="ourGroupsClicked">
+    <ion-card style="height: 449px !important;" *ngFor="let PublicGrpModels of PublicGrpModel"  (click)=PublicGrpModelClicked() >
+      <img class="pkgImage" [src]="'https://www.nomadlord.com/'+ PublicGrpModels.GrpProfilePhoto" />
+      <ion-card-content  style="height: 75px !important;">
+        <ion-card-title style="height: 45px;" >{{PublicGrpModels.GrpTitle}}</ion-card-title>
+        <ion-card-subtitle class="subtitle"  style="font-size: 0.9em;" >{{PublicGrpModels.AboutGrp}}</ion-card-subtitle>
+      </ion-card-content>
+    </ion-card>
+  </div> -->
 </ion-content>
 

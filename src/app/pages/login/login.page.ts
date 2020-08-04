@@ -14,8 +14,10 @@ import { UserService } from '../../service/user.service';
 })
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
+  registerForm:FormGroup
   forgotPasswordForm:FormGroup;
   userData;
+  userRegisterData;
   forgotPasswordData;
 
   private _success = new Subject<string>();
@@ -29,6 +31,7 @@ export class LoginPage implements OnInit {
   loginFormDiv=true;
   forgotFormDiv=false;
   loadingForm=false;
+  registerFormDiv=false;
   constructor(private formBuilder: FormBuilder, private router: Router,public userService: UserService) { 
     // console.log("userdata_local>>>>>>>>",localStorage.getItem('userData'));
   }
@@ -39,9 +42,20 @@ export class LoginPage implements OnInit {
       password: ['',Validators.required],
       rememberMe:['']
     });
+
     this.forgotPasswordForm = this.formBuilder.group({
       email: ['',Validators.required],
     });
+
+    this.registerForm=this.formBuilder.group({
+      LoginEmail:['',Validators.required],
+      password: ['',Validators.required],
+      imagePath:[''],
+      Name:['',Validators.required],
+      AboutGrp:[''],
+      LoginType:['',Validators.required],
+      FileExtension:['']
+    })
 
     setTimeout(() => this.staticAlertClosed = true, 20000);
 
@@ -117,6 +131,35 @@ export class LoginPage implements OnInit {
     }
     console.log("forgotPasswordData",this.forgotPasswordData)
     this.forgotPasswordForm.reset();
+  }
+  onSubmitRegisterForm(){
+    this.userRegisterData={
+      LoginEmail:this.registerForm.controls.LoginEmail.value,
+      password: this.registerForm.controls.password.value,
+      imagePath:this.registerForm.controls.imagePath.value,
+      Name:this.registerForm.controls.Name.value,
+      AboutGrp:this.registerForm.controls.AboutGrp.value,
+      LoginType:this.registerForm.controls.LoginType.value,
+      FileExtension:'.jpg'
+    }
+    this.userService.registrationDetails(this.userRegisterData).subscribe(data => {
+      if(data['Status']==1){
+        this.registerFormDiv=false;
+        this. forgotFormDiv= false;
+        this. loginFormDiv= true;
+        this._success.next('Verification link has been sent to your email. Please check your email');
+      }else{
+        this._failure.next('Registration Failed try Again...');
+      }
+    })
+    console.log("this.userRegisterData>>",this.userRegisterData)
+  }
+
+  showRegisterFormDiv(){
+    console.log("registerform div>>>>>")
+    this.registerFormDiv=true;
+    this. forgotFormDiv= false;
+    this. loginFormDiv= false;
   }
   backToLogin() {
     console.log("selected>>>")

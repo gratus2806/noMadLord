@@ -11,6 +11,9 @@ export class UserService {
   loginDetails(userData){
     return this.http.post(environment.apiBaseUrl+'Account/UserLogin',userData);
   }
+  registrationDetails(userRegisterData){
+    return this.http.post(environment.apiBaseUrl+'Account/Register',userRegisterData);
+  }
   logout(){
     localStorage.removeItem("loginStatus");
     localStorage.removeItem("userData");
@@ -21,7 +24,7 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl+'Account/ForgetPassword',forgotPasswordData);
   }
   loadDashboardItems(){
-    return this.http.get(environment.apiBaseUrl+'/Dashboard/GetAllDetails');
+    return this.http.get(environment.apiBaseUrl+'Dashboard/GetAllDetails');
   }
 
 }
