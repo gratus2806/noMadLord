@@ -14,13 +14,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {UserService} from "./service/user.service";
 import {HttpClientModule} from "@angular/common/http";
+
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     HttpClientModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
+    AlifeFileToBase64Module, 
     IonicModule.forRoot(), 
     AppRoutingModule, NgbModule
     

@@ -2,11 +2,43 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
-    </ion-buttons >
-    <ion-title>group</ion-title>
+    </ion-buttons>
+    <ion-title>NomadLord </ion-title>
+    <ion-buttons slot="end">
+    <ion-icon size="large"  name="cart-outline"></ion-icon>
+  </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content fullscreen="true">
+  <span>
+    <ngb-alert style="position: fixed;overflow: scroll;width: 100%;" *ngIf="failureMessage" type="danger" (close)="failureMessage = ''">{{ failureMessage }}</ngb-alert>
+  </span>
+  <div style="position: absolute;top: 35%;left: 38%;z-index: 1;" *ngIf="loadingForm" >
+    <img style="margin: 30px auto;height: 84px;" src="../../../assets/loading.gif" />
+  </div>
+  <div style="text-align: center;" [class.blur]="loadingForm">
+   
+    <h1 class="slide_header" >Our Group</h1>
+    <ion-slides #slides pager="false">
+      <ion-slide *ngFor="let PublicGrpModels of PublicGrpModel">
+        <ion-card class="ion_card" *ngIf="PublicGrpModels.GrpProfilePhoto" (click)=PublicGrpModelClicked() >
+          <img class="pkgImage" [src]="'https://www.nomadlord.com/'+ PublicGrpModels.GrpProfilePhoto" />
+          <ion-card-content class="ion_card_content" >
+            <ion-card-title class="ion_card_title">{{PublicGrpModels.GrpTitle}}</ion-card-title>
+            <ion-card-subtitle class="subtitle"   >{{PublicGrpModels.AboutGrp}}</ion-card-subtitle>
+          </ion-card-content>
+        </ion-card>
+        <ion-card class="ion_card" *ngIf="PublicGrpModels.GrpProfilePhoto==''">
+          <img class="pkgImage" src="https://www.nomadlord.com/Files/GrpImages/grpImg.jpg " />
+          <ion-card-content  class="ion_card_content">
+            <ion-card-title class="ion_card_title">{{PublicGrpModels.GrpTitle}}</ion-card-title>
+            <ion-card-subtitle class="subtitle"  >{{PublicGrpModels.AboutGrp}}</ion-card-subtitle>
+          </ion-card-content>
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
 </ion-content>
+

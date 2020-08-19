@@ -27,11 +27,13 @@ export class LoginPage implements OnInit {
   successMessage = '';
   failureMessage = '';
   warningMessage = '';
+  imagePath;
   local;
   loginFormDiv=true;
   forgotFormDiv=false;
   loadingForm=false;
   registerFormDiv=false;
+  groupsSelected=false;
   constructor(private formBuilder: FormBuilder, private router: Router,public userService: UserService) { 
     // console.log("userdata_local>>>>>>>>",localStorage.getItem('userData'));
   }
@@ -50,7 +52,7 @@ export class LoginPage implements OnInit {
     this.registerForm=this.formBuilder.group({
       LoginEmail:['',Validators.required],
       password: ['',Validators.required],
-      imagePath:[''],
+      confirmPassword:['',Validators.required],
       Name:['',Validators.required],
       AboutGrp:[''],
       LoginType:['',Validators.required],
@@ -132,27 +134,45 @@ export class LoginPage implements OnInit {
     console.log("forgotPasswordData",this.forgotPasswordData)
     this.forgotPasswordForm.reset();
   }
+  onFileChanges(event){
+    this.imagePath = event[0].base64;
+    
+    
+    console.log("onFileChanges>>",this.imagePath)
+  }
+  onFileChangeUser(event){
+  console.log("about group hide")
+  this.groupsSelected=false;
+  }
+  onFileChangeGroup(event){
+    this.groupsSelected=true;
+    console.log("about group show")
+  }
   onSubmitRegisterForm(){
-    this.userRegisterData={
-      LoginEmail:this.registerForm.controls.LoginEmail.value,
-      password: this.registerForm.controls.password.value,
-      imagePath:this.registerForm.controls.imagePath.value,
-      Name:this.registerForm.controls.Name.value,
-      AboutGrp:this.registerForm.controls.AboutGrp.value,
-      LoginType:this.registerForm.controls.LoginType.value,
-      FileExtension:'.jpg'
-    }
-    this.userService.registrationDetails(this.userRegisterData).subscribe(data => {
-      if(data['Status']==1){
-        this.registerFormDiv=false;
-        this. forgotFormDiv= false;
-        this. loginFormDiv= true;
-        this._success.next('Verification link has been sent to your email. Please check your email');
-      }else{
-        this._failure.next('Registration Failed try Again...');
+    if(this.registerForm.controls.password.value==this.registerForm.controls.confirmPassword.value){
+      this.userRegisterData={
+        LoginEmail:this.registerForm.controls.LoginEmail.value,
+        password: this.registerForm.controls.password.value,
+        ImagePathAPI:this.imagePath,
+        Name:this.registerForm.controls.Name.value,
+        AboutGrp:this.registerForm.controls.AboutGrp.value,
+        LoginType:this.registerForm.controls.LoginType.value,
+        FileExtension:'.jpg'
       }
-    })
-    console.log("this.userRegisterData>>",this.userRegisterData)
+      this.userService.registrationDetails(this.userRegisterData).subscribe(data => {
+        if(data['Status']==1){
+          this.registerFormDiv=false;
+          this. forgotFormDiv= false;
+          this. loginFormDiv= true;
+          this._success.next('Verification link has been sent to your email. Please check your email');
+        }else{
+          this._failure.next('Registration Failed try Again...');
+        }
+      })
+      this.registerForm.reset();
+    } else{
+      this._failure.next('Password MissMatch...');
+    }
   }
 
   showRegisterFormDiv(){

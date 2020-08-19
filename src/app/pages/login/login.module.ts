@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginPageRoutingModule } from './login.routing.module';
 import { LoginPage } from './login.page';
 import {HttpClientModule} from "@angular/common/http";
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 @NgModule({ 
   imports: [
     CommonModule,
@@ -15,6 +16,7 @@ import {HttpClientModule} from "@angular/common/http";
     NgbModule,
     ReactiveFormsModule,
     IonicModule,
+    AlifeFileToBase64Module,
     LoginPageRoutingModule
   ],
   declarations: [LoginPage]

@@ -1,0 +1,14 @@
+ion-slides {
+    margin-top: 50px;
+  }
+   
+  ion-slide {
+    flex-direction: column;
+    font-size: small;
+    ion-text {
+      padding: 5px;
+    }
+    .selected {
+      font-weight: 600;
+    }
+  }
