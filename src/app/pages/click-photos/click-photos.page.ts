@@ -40,14 +40,17 @@ export class ClickPhotosPage implements OnInit {
   selectedPaths
   @ViewChild('slides', { static: true }) slides: IonSlides;
   constructor(private router:Router) { 
-    router.events.subscribe((event: RouterEvent) => {
-      this.selectedPaths = event.url;
-      if(this.selectedPaths=='/app/tab/click-photos'){
-        this.selectImage();
-      }
-      console.log("path",this.selectedPaths)
-    })
+    // router.events.subscribe((event: RouterEvent) => {
+    //   this.selectedPaths = event.url;
+      // if(this.selectedPaths=='/app/tab/click-photos'){
+        // this.selectImage();
+    //   }
+    //   console.log("path",this.selectedPaths)
+    // })
     
+  }
+  ionViewWillEnter() {
+    this.selectImage();
   }
 
   ngOnInit() {
