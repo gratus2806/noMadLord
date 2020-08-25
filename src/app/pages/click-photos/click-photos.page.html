@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar color="primary">
+      <ion-title>
+          Ionic Photo Filter
+      </ion-title>
+      
+  </ion-toolbar>
+</ion-header>
+ 
+<ion-content>
+  <div class="preview" *ngIf="image">
+    <web-photo-filter 
+      [class.no-original]="selectedFilter != ''" 
+      [class.only-original]="selectedFilter == ''"
+      [src]="image" 
+      keep="true" 
+      [filter]="selectedFilter" 
+      (filterLoad)="imageLoaded($event)">
+    </web-photo-filter>
+  </div>
+  <!-- <ion-buttons >
+    <ion-button (click)="saveImage()">Save</ion-button>
+</ion-buttons> -->
+</ion-content>

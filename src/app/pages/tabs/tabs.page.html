@@ -9,24 +9,47 @@
   </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-tabs>
-  <ion-tab-bar slot='bottom'>
-    <ion-tab-button tab='home'>
+<ion-tabs >
+  <ion-tab-bar slot='bottom' 
+  [class.tabVisiplityHide]="hideMainTabs">
+
+    <ion-tab-button tab='home' >
       <ion-icon name='home'></ion-icon>
       <ion-lable>Home</ion-lable>
     </ion-tab-button>
+
     <ion-tab-button tab='travel'>
       <ion-icon name='airplane'></ion-icon>
       <ion-lable>Travel</ion-lable>
     </ion-tab-button>
+
+    <ion-tab-button tab='my-activity' *ngIf="loginStatus==1">
+      <ion-icon name='body'></ion-icon>
+      <ion-lable>Activity</ion-lable>
+    </ion-tab-button>
+
     <ion-tab-button tab='group'>
       <ion-icon name='people'></ion-icon>
       <ion-lable>Groups</ion-lable>
     </ion-tab-button>
-    <ion-tab-button tab='my-activity'>
-      <ion-icon name='body'></ion-icon>
-      <ion-lable>My Activity</ion-lable>
+
+    <ion-tab-button tab='about'>
+      <ion-icon name='book'></ion-icon>
+      <ion-lable>AboutUs</ion-lable>
     </ion-tab-button>
+  </ion-tab-bar>
+  
+  <ion-tab-bar slot='bottom' [class.tabVisiplityHide]="showMainTabs">
+    <ion-tab-button tab='upload-photos'>
+      <ion-icon name='cloud-upload' [class.tabColor]="selectedPath==='/app/tab/upload-photos'"></ion-icon>
+      <ion-lable [class.tabColor]="selectedPath==='/app/tab/upload-photos'">Upload Photos</ion-lable>
+    </ion-tab-button>
+    <ion-tab-button tab='click-photos' >
+      <ion-icon name='aperture' [class.tabColor]="selectedPath==='/app/tab/click-photos'"></ion-icon>
+      <ion-lable [class.tabColor]="selectedPath==='/app/tab/click-photos'">Click Photos</ion-lable>
+    </ion-tab-button>
+
+   
   </ion-tab-bar>
 </ion-tabs>
 

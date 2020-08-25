@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {  IonSlides, MenuController } from '@ionic/angular';
-import {Router} from "@angular/router";
+import {Router,ActivatedRoute} from "@angular/router";
 import { UserService } from '../../service/user.service';
 import {Subject} from 'rxjs';
 import {debounceTime} from 'rxjs/operators';
@@ -29,9 +29,8 @@ sliderOptions = {
   ourGroupsClicked=false;
   @ViewChild('slides', { static: true }) slides: IonSlides;
 
-  constructor(public menu: MenuController,private router: Router,public userService: UserService) { 
+  constructor(public menu: MenuController,private route: ActivatedRoute,private router: Router,public userService: UserService) { 
     this.loginStatus=localStorage.getItem('loginStatus');
-    
   }
  
   ngOnInit() {
@@ -43,7 +42,7 @@ sliderOptions = {
     ).subscribe(() => this.failureMessage = '');
 
     this.userService.loadDashboardItems().subscribe(data => {
-      console.log("data>>>>",data)
+      // console.log("data>>>>",data)
       this.PublicPkgViewModel=data['Data'].PublicPkgViewModel
       this.PublicGrpModel = data['Data'].PublicGrpModel
       this.lstBlogs=data['Data'].lstBlogs

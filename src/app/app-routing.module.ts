@@ -33,6 +33,16 @@ const routes: Routes = [
     path: 'logout',
     loadChildren: () => import('./pages/logout/logout.module').then( m => m.LogoutPageModule)
   },
+  // {
+  //   path: 'click-photos',
+  //   loadChildren: () => import('./pages/click-photos/click-photos.module').then( m => m.ClickPhotosPageModule)
+  // },
+  // {
+  //   path: 'upload-photos',
+  //   loadChildren: () => import('./pages/upload-photos/upload-photos.module').then( m => m.UploadPhotosPageModule)
+  // }
+
+
 
   // {
   //   path: 'login-regiter',

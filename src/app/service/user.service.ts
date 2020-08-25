@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {Observable} from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 // import {User} from "../model/user.model";
@@ -23,8 +24,11 @@ export class UserService {
   forgotPassword(forgotPasswordData){
     return this.http.post(environment.apiBaseUrl+'Account/ForgetPassword',forgotPasswordData);
   }
-  loadDashboardItems(){
-    return this.http.get(environment.apiBaseUrl+'Dashboard/GetAllDetails');
+  loadDashboardItems():Observable<any> {
+    return this.http.get('https://api.nomadlord.com/api/Dashboard/GetAllDetails');
   }
+  // sendDashboardItems(dashboardData) {
+  //   this.router.navigate(['/app/tab/home'],dashboardData);
+  // }
 
 }

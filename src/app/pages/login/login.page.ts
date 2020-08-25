@@ -27,7 +27,9 @@ export class LoginPage implements OnInit {
   successMessage = '';
   failureMessage = '';
   warningMessage = '';
+  filetypeSplits;
   imagePath;
+  filetype;
   local;
   loginFormDiv=true;
   forgotFormDiv=false;
@@ -135,10 +137,22 @@ export class LoginPage implements OnInit {
     this.forgotPasswordForm.reset();
   }
   onFileChanges(event){
-    this.imagePath = event[0].base64;
-    
-    
-    console.log("onFileChanges>>",this.imagePath)
+    // this.imagePath = event[0].base64;
+    this.filetype = event[0].type
+    var str1 = new String(event[0].type);
+    this.filetypeSplits = str1.split("/");
+    // this.filetype=filetypeSplits
+    console.log("filetypeSplits>>",this.filetypeSplits)
+    if(this.filetypeSplits[0]=="image"){
+      console.log("success")
+    } else{
+      this._failure.next('Upload Image Only..!');
+    }
+    var str = new String(event[0].base64);
+    var splits = str.split(",");
+    this.imagePath = splits[1]
+    // console.log(splits);
+    console.log("onFileChanges>>",event)
   }
   onFileChangeUser(event){
   console.log("about group hide")
@@ -150,26 +164,30 @@ export class LoginPage implements OnInit {
   }
   onSubmitRegisterForm(){
     if(this.registerForm.controls.password.value==this.registerForm.controls.confirmPassword.value){
-      this.userRegisterData={
-        LoginEmail:this.registerForm.controls.LoginEmail.value,
-        password: this.registerForm.controls.password.value,
-        ImagePathAPI:this.imagePath,
-        Name:this.registerForm.controls.Name.value,
-        AboutGrp:this.registerForm.controls.AboutGrp.value,
-        LoginType:this.registerForm.controls.LoginType.value,
-        FileExtension:'.jpg'
-      }
-      this.userService.registrationDetails(this.userRegisterData).subscribe(data => {
-        if(data['Status']==1){
-          this.registerFormDiv=false;
-          this. forgotFormDiv= false;
-          this. loginFormDiv= true;
-          this._success.next('Verification link has been sent to your email. Please check your email');
-        }else{
-          this._failure.next('Registration Failed try Again...');
+      if(this.filetypeSplits[0]=="image"){
+        this.userRegisterData={
+          LoginEmail:this.registerForm.controls.LoginEmail.value,
+          password: this.registerForm.controls.password.value,
+          ImagePathAPI:this.imagePath,
+          Name:this.registerForm.controls.Name.value,
+          AboutGrp:this.registerForm.controls.AboutGrp.value,
+          LoginType:this.registerForm.controls.LoginType.value,
+          FileExtension:".jpeg"
         }
-      })
-      this.registerForm.reset();
+        this.userService.registrationDetails(this.userRegisterData).subscribe(data => {
+          if(data['Status']==1){
+            this.registerFormDiv=false;
+            this. forgotFormDiv= false;
+            this. loginFormDiv= true;
+            this._success.next('Verification link has been sent to your email. Please check your email');
+          }else{
+            this._failure.next('Registration Failed try Again...');
+          }
+        })
+        this.registerForm.reset();
+      } else{
+        this._failure.next('Upload Image Only..!');
+      }
     } else{
       this._failure.next('Password MissMatch...');
     }

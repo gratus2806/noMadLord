@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import{Router, RouterEvent} from '@angular/router'
 import { Platform } from '@ionic/angular';
-
+import { UserService } from './service/user.service';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
@@ -74,11 +74,11 @@ export class AppComponent {
       url:'/app/tab/gallary',
       icon: 'images'
     },
-    {
-      title:'My Activity',
-      url:'/app/tab/my-activity',
-      icon: 'body'
-    },
+    // {
+    //   title:'My Activity',
+    //   url:'/app/tab/my-activity',
+    //   icon: 'body'
+    // },
     {
       title:'Cart',
       url:'/app/tab/cart',
@@ -97,13 +97,18 @@ export class AppComponent {
   ];
   selectedPath='';
   loginStatus;
-  constructor(private router:Router,private platform: Platform,private splashScreen: SplashScreen,private statusBar: StatusBar) {
-    this.loginStatus=localStorage.getItem('loginStatus');
-    console.log(">>>>",this.loginStatus)
+  constructor(public userService: UserService,private router:Router,private platform: Platform,private splashScreen: SplashScreen,private statusBar: StatusBar) {
+    // this.loginStatus=localStorage.getItem('loginStatus');
+    // console.log(">>>>",this.loginStatus)
+    // this.userService.loadDashboardItems().subscribe(data => {
+      
+    // })
     router.events.subscribe((event: RouterEvent) => {
-     
         this.selectedPath = event.url;
+        // console.log("this.selectedPathMenu",this.selectedPath)
+        this.loginStatus=localStorage.getItem('loginStatus');
     });
+    
     this.initializeApp();
   }
 

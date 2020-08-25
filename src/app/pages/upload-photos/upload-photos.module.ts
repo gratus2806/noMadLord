@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {HttpClientModule} from "@angular/common/http";
+
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { UploadPhotosPageRoutingModule } from './upload-photos-routing.module';
 
-import { HomePage } from './home.page';
+import { UploadPhotosPage } from './upload-photos.page';
 
 @NgModule({
   imports: [
     CommonModule,
-    HttpClientModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    UploadPhotosPageRoutingModule
   ],
-  declarations: [HomePage]
+  declarations: [UploadPhotosPage]
 })
-export class HomePageModule {}
+export class UploadPhotosPageModule {}

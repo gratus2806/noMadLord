@@ -8,8 +8,8 @@
             Menu
           </ion-list-header>
           <span *ngIf="loginStatus!='1'">
-            <ion-menu-toggle autoHide="false" *ngFor="let p of pagesBeforeLogin">
-              <ion-item  [routerLink]="p.url" routerLinkActive="selected" detail="false" routerDirection="root" [class.active-item]="selectedPath===p.url">
+            <ion-menu-toggle autoHide="false" *ngFor="let p of pagesBeforeLogin" >
+              <ion-item  [routerLink]="p.url" routerLinkActive="selected" detail="false" routerDirection="root" [class.active-item]="selectedPath===p.url" >
                 <ion-icon slot="start" [name]="p.icon + '-outline'"></ion-icon>
                 <ion-label>
                   {{p.title}}

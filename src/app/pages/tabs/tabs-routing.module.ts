@@ -36,6 +36,14 @@ const routes: Routes = [
       {
         path: 'about',
         loadChildren: () => import('../about/about.module').then( m => m.AboutPageModule)
+      },
+      {
+        path: 'click-photos',
+        loadChildren: () => import('../click-photos/click-photos.module').then( m => m.ClickPhotosPageModule)
+      },
+      {
+        path: 'upload-photos',
+        loadChildren: () => import('../upload-photos/upload-photos.module').then( m => m.UploadPhotosPageModule)
       }
     ]
   },

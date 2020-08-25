@@ -10,10 +10,12 @@
 </ion-header>
  
 <ion-content>
-  <ion-button expand="full" (click)="selectImage()">Select Image</ion-button>
+  
+  
  
   <!-- Big preview of selected filter -->
-  <div class="preview" *ngIf="image">
+
+  <!-- <div class="preview" *ngIf="image">
     <web-photo-filter 
       [class.no-original]="selectedFilter != ''" 
       [class.only-original]="selectedFilter == ''"
@@ -22,7 +24,7 @@
       [filter]="selectedFilter" 
       (filterLoad)="imageLoaded($event)">
     </web-photo-filter>
-  </div>
+  </div> -->
  
   <!-- Slides with thumbnail preview of all filters -->
   <!-- <ion-slides [options]="slideOpts" *ngIf="image">
